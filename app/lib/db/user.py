@@ -1,8 +1,5 @@
 from datetime import datetime, timezone
-from typing import AsyncGenerator, Sequence
-
-from sqlalchemy import asc, func, select
-from sqlalchemy.ext.asyncio import AsyncSession
+from typing import Sequence
 
 from smart_fridge.core.exceptions.user import UserEmailAlreadyExistsException, UserNotFoundException
 from smart_fridge.core.security import Encryptor
@@ -11,6 +8,8 @@ from smart_fridge.lib.models.fridge_product import FridgeProductModel
 from smart_fridge.lib.models.product import ProductModel
 from smart_fridge.lib.models.product_type import ProductTypeModel
 from smart_fridge.lib.schemas.user import UserCreateSchema, UserPatchSchema, UserSchema, UserUpdateSchema
+from sqlalchemy import asc, func, select
+from sqlalchemy.ext.asyncio import AsyncSession
 
 
 async def is_email_exists(db: AsyncSession, email: str) -> bool:
