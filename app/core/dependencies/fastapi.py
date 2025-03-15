@@ -1,6 +1,7 @@
 from typing import Annotated, Any, AsyncGenerator
 
 from fastapi import Depends, Request
+from fastapi.templating import Jinja2Templates
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import sessionmaker
 
@@ -14,6 +15,10 @@ def db_session_maker_stub() -> sessionmaker[Any]:
 
 
 def app_config_stub() -> AppConfig:
+    raise NotImplementedError
+
+
+def templates_stub() -> Jinja2Templates:
     raise NotImplementedError
 
 
