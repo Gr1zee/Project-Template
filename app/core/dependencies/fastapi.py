@@ -41,3 +41,4 @@ async def db_session(
 
 
 DatabaseDependency = Annotated[AsyncSession, Depends(db_session)]
+TemplatesDependency = Annotated[Jinja2Templates, Depends(templates_stub)]
