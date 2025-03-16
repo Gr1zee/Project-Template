@@ -1,12 +1,25 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 from ..init import templates
-from ..lib.schemas.Item import Item, Base
-from ..lib.models.Item import ItemModel
-from app.lib.models.Item import SessionLocal
+from ..lib.schemas.Item import Item
 from sqlalchemy import engine
+from sqlalchemy import create_engine, Column, Integer, String, Float, engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
 
 router = APIRouter()
+
+DATABASE_URL = "sqlite:///./test.db"
+engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+Base = declarative_base()
+
+class ItemModel(Base):
+    __tablename__ = "items"
+    id = Column(Integer, primary_key=True, index=True)
+    price = Column(Float)
 
 Base.metadata.create_all(bind=engine)
 
